@@ -19,8 +19,7 @@ class Game {
     }
     prototypeQuestions.forEach(makeCards);
     console.log(cardsFromData);
-    var cardStack = Array.from(cardsFromData);
-    const deck = new Deck(cardStack);
+    const deck = new Deck(cardsFromData);
     const round = new Round(deck);
     return round;
   }
