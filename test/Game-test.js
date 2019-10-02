@@ -16,30 +16,28 @@ describe('Game', function() {
     expect(game.currentRound).to.equal(0);
   });
 
-  it('should used provided data to make array of cards', function(){
+  it('should used provided data to make array of cards', function() {
     const game = new Game();
 
     expect(game.start().deck.length).to.equal(30);
   });
 
   it('should have the correct card at the top', function() {
-    const game =  new Game();
+    const game = new Game();
 
     expect(game.start().deck[0].id).to.equal(1);
   });
 
   it('should have the correct card at the bottom', function() {
-    const game =  new Game();
+    const game = new Game();
 
     expect(game.start().deck[29].id).to.equal(30);
   });
 
   it('should instantiate a new round', function() {
-    const game =  new Game();
+    const game = new Game();
 
     expect(game.start()).to.be.an.instanceof(Round);
-  })
-  //make sure a deck is instantiated
-  //make sure a round is instantiated
+  });
 
 });

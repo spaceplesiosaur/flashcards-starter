@@ -18,14 +18,15 @@ class Round {
     const turn = new Turn(guess, this.returnCurrentCard());
     this.turns++;
     var guessEval = turn.evaluateGuess();
-    turn.giveFeedback();
+    // turn.giveFeedback();
     if (guessEval === false) {
       this.incorrectGuesses.push(this.deck[0].id);
       this.deck.push(this.deck.shift());
     } else {
       this.deck.shift();
     }
-    return turn;
+    // return turn;
+    return turn.giveFeedback();
   }
   calculatePercentCorrect() {
     return 100 - (this.incorrectGuesses.length / this.turns * 100)
