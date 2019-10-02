@@ -10,7 +10,7 @@ const Game = require('../src/Game');
 describe('Game', function() {
 
   it('should start with 0 rounds', function() {
-  
+
     const game = new Game();
 
     expect(game.currentRound).to.equal(0);
@@ -20,9 +20,25 @@ describe('Game', function() {
     const game = new Game();
 
     expect(game.start().deck.length).to.equal(30);
+  });
+
+  it('should have the correct card at the top', function() {
+    const game =  new Game();
+
+    expect(game.start().deck[0].id).to.equal(1);
+  });
+
+  it('should have the correct card at the bottom', function() {
+    const game =  new Game();
+
+    expect(game.start().deck[29].id).to.equal(30);
+  });
+
+  it('should instantiate a new round', function() {
+    const game =  new Game();
+
+    expect(game.start()).to.be.an.instanceof(Round);
   })
-  //make sure cardStack[0] is right
-  //make sure another card is right
   //make sure a deck is instantiated
   //make sure a round is instantiated
 
