@@ -17,20 +17,25 @@ class Round {
   takeTurn(guess) {
     const turn = new Turn(guess, this.returnCurrentCard());
     this.turns++;
-
-    if (turn.evaluateGuess() === true) {
-
-
+    var guessEval = turn.evaluateGuess();
+    turn.giveFeedback();
+    if (guessEval === false) {
+      this.incorrectGuesses.push(this.deck[0].id);
+      this.deck.push(this.deck.shift());
+    } else {
+      this.deck.shift();
     }
-    this.deck.shift(this.deck[0]);
-
-
+    return turn;
   }
   calculatePercentCorrect() {
-
+    return 100 - (this.incorrectGuesses.length / this.turns * 100)
   }
   endRound() {
-
+    if (this.deck.length === 0) {
+      var message = (`Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`);
+      console.log(message);
+      return message;
+    }
   }
 }
 
