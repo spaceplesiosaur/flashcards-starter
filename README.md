@@ -12,5 +12,6 @@ Use the arrow keys to move up and down to choose your answer.  If your answer is
 
 ## Working Application
 
-![](https://makeagif.com/i/2HM5z1)
+![name of gif](https://makeagif.com/i/2HM5z1)
+
 
