@@ -12,4 +12,4 @@ Use the arrow keys to move up and down to choose your answer.  If your answer is
 
 ## Working Application
 
-[demo gif]: https://makeagif.com/i/2HM5z1
+! [demo gif]: https://makeagif.com/i/2HM5z1
