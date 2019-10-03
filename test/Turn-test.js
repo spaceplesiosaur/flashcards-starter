@@ -32,24 +32,6 @@ describe('Turn', function() {
     expect(turn.card.id).to.equal(1);
   });
 
-  // it.skip('should have a question', function() {
-  //   const card = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-  //   const turn = new Turn('cats', card);
-  //   expect(turn.card.question).to.equal('What is your dearest ambition?');
-  // });
-  //
-  // it.skip('should have a list of possible answers', function() {
-  //   const card = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-  //   const turn = new Turn('cats', card);
-  //   expect(turn.card.answers).to.equal(['to eat candy', 'to marry a rabbit', 'sandwiches']);
-  // });
-  //
-  // it.skip('should have one correct answer', function() {
-  //   const card = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-  //   const turn = new Turn('cats', card);
-  //   expect(turn.card.correctAnswer).to.equal('sandwiches');
-  // });
-
   it('should return the guess', function() {
     const card = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
     const turn = new Turn('cats', card);

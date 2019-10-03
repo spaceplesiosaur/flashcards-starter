@@ -14,7 +14,7 @@ class Game {
     this.currentRound++;
     var cardsFromData = [];
 
-    function makeCards(cardData, index) {
+    function makeCards(cardData) {
       var card = new Card(cardData.id, cardData.question, cardData.answers, cardData.correctAnswer);
       cardsFromData.push(card);
     }

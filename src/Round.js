@@ -1,8 +1,5 @@
 const data = require('./data');
-const prototypeQuestions = data.prototypeData;
-const util = require('./util');
 const Turn = require('../src/Turn');
-
 
 class Round {
   constructor(deckDetails) {
@@ -18,14 +15,12 @@ class Round {
     const turn = new Turn(guess, this.returnCurrentCard());
     this.turns++;
     var guessEval = turn.evaluateGuess();
-    // turn.giveFeedback();
     if (guessEval === false) {
       this.incorrectGuesses.push(this.deck[0].id);
       this.deck.push(this.deck.shift());
     } else {
       this.deck.shift();
     }
-    // return turn;
     return turn.giveFeedback();
   }
   calculatePercentCorrect() {
@@ -39,6 +34,5 @@ class Round {
     }
   }
 }
-
 
 module.exports = Round;
