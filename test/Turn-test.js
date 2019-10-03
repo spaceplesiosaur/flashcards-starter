@@ -38,7 +38,7 @@ describe('Turn', function() {
     expect(turn.returnGuess()).to.equal(turn.guess);
   });
 
-  it('should return the cardInfo', function() {
+  it('should return the card information', function() {
     const card = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
     const turn = new Turn('cats', card);
     expect(turn.returnCard()).to.equal(card);

@@ -7,101 +7,51 @@ const Round = require('../src/Round');
 
 describe('Round', function() {
 
+  let card1;
+  let card2;
+  let card3;
+  let cardList;
+  let deck;
+  let round;
+
+
+  beforeEach(function() {
+    card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
+    card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
+    card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
+
+    cardList = [card1, card2, card3];
+
+    deck = new Deck(cardList);
+
+    round = new Round(deck);
+ });
+
   it('should be a function', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(Round).to.be.a('function');
   });
 
   it('should be an instance of Round', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round).to.be.an.instanceof(Round);
   });
 
   it('should take a deck', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.deck).to.deep.equal([card1, card2, card3]);
   });
 
   it('should start with 0 turns', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.turns).to.equal(0);
   });
 
   it('should be able to store incorrect guesses', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.incorrectGuesses).to.deep.equal([]);
   });
 
   it('should have the first card in the deck as current card', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.returnCurrentCard()).to.deep.equal(cardList[0]);
   });
 
   it('should increase the number of turns each time a turn is taken', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     round.takeTurn('moose')
     round.takeTurn('moose')
     round.takeTurn('moose')
@@ -110,16 +60,6 @@ describe('Round', function() {
   });
 
   it('should remove first card each time a turn is taken', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     round.takeTurn('moose')
     round.takeTurn('moose')
 
@@ -127,44 +67,14 @@ describe('Round', function() {
   });
 
   it('should say if a guess is wrong', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.takeTurn('basket of eggs')).to.equal("Incorrect!");
   });
 
   it('should say if a guess is right', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     expect(round.takeTurn('sandwiches')).to.equal("Correct!");
   });
 
   it('should store incorrect guesses', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     round.takeTurn('basket of eggs');
     round.takeTurn('rabbits');
     round.takeTurn('cats');
@@ -173,16 +83,6 @@ describe('Round', function() {
   });
 
   it('should keep incorrect guesses in deck and remove correct guesses', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     round.takeTurn('basket of eggs');
     round.takeTurn('rabbits');
     round.takeTurn('cats');
@@ -190,17 +90,7 @@ describe('Round', function() {
     expect(round.deck.length).to.equal(2);
   });
 
-  it('should what percent of guesses were correct when deck is empty', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
+  it('should know what percent of guesses were correct when deck is empty', function() {
     round.takeTurn('basket of eggs');
     round.takeTurn('rabbits');
     round.takeTurn('cats');
@@ -211,16 +101,6 @@ describe('Round', function() {
   });
 
   it('should say that the game is over and what percent of answers were correct', function() {
-    const card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
-    const card2 = new Card(2, 'What is your greatest fear?', ['rabbits', 'forced to marry a rabbit', 'The Easter Bunny'], 'rabbits');
-    const card3 = new Card(3, 'What is your most treasured object?', ['carrot', 'The Tale of Peter Rabbit', 'basket of eggs'], 'carrot');
-
-    const cardList = [card1, card2, card3];
-
-    const deck = new Deck(cardList);
-
-    const round = new Round(deck);
-
     round.takeTurn('basket of eggs');
     round.takeTurn('rabbits');
     round.takeTurn('cats');
