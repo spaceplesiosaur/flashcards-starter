@@ -12,4 +12,5 @@ Use the arrow keys to move up and down to choose your answer.  If your answer is
 
 ## Working Application
 
-![img]: https://makeagif.com/i/2HM5z1
+![](https://makeagif.com/i/2HM5z1)
+
