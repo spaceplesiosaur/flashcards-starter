@@ -20,7 +20,7 @@ class Game {
     }
     prototypeQuestions.forEach(makeCards);
     const deck = new Deck(cardsFromData);
-    const round = new Round(deck);
+    const round = new Round(deck, Date.now());
     this.printMessage(deck, round);
     this.printQuestion(round);
     return round;

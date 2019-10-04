@@ -12,8 +12,8 @@ describe('Round', function() {
   let card3;
   let cardList;
   let deck;
+  let testDate;
   let round;
-
 
   beforeEach(function() {
     card1 = new Card(1, 'What is your dearest ambition?', ['to eat candy', 'to marry a rabbit', 'sandwiches'], 'sandwiches');
@@ -24,7 +24,9 @@ describe('Round', function() {
 
     deck = new Deck(cardList);
 
-    round = new Round(deck);
+    testDate = Date.now();
+
+    round = new Round(deck, testDate);
  });
 
   it('should be a function', function() {
@@ -37,6 +39,10 @@ describe('Round', function() {
 
   it('should take a deck', function() {
     expect(round.deck).to.deep.equal([card1, card2, card3]);
+  });
+
+  it('should take a start time in seconds', function() {
+    expect(round.startTime).to.equal(testDate);
   });
 
   it('should start with 0 turns', function() {
@@ -100,13 +106,15 @@ describe('Round', function() {
     expect(round.calculatePercentCorrect()).to.equal(60);
   });
 
-  it('should say that the game is over and what percent of answers were correct', function() {
+  it('should say that the game is over, what percent of answers were correct, and how long it took', function() {
     round.takeTurn('basket of eggs');
     round.takeTurn('rabbits');
     round.takeTurn('cats');
     round.takeTurn('sandwiches');
     round.takeTurn('carrot');
 
-    expect(round.endRound()).to.equal('Round over! ** You answered 60% of the questions correctly!');
+    setTimeout(function() {
+        expect(round.endRound()).to.equal(`Round over! ** You answered 60% of the questions correctly! It took you ${Math.floor((Date.now() - round.startTime)/1000/60)} minutes and ${Math.floor((Date.now() - round.startTime)/1000 % 60)} seconds.`);
+      }, 2000)
   });
 });
